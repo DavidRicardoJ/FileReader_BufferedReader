@@ -8,13 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
         String patch = "C:\\Users\\David\\Desktop\\in.txt";
-        FileReader fileReader = null;
-        BufferedReader bufferedReader = null;
 
-        try {
-            fileReader = new FileReader(patch);
-            bufferedReader = new BufferedReader(fileReader);
-
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader (patch))){
             String line = bufferedReader.readLine();
             while (line != null) {
                 System.out.println(line);
@@ -24,16 +19,10 @@ public class Main {
 
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
-        } finally {
-            try {
-                if (bufferedReader != null) bufferedReader.close();
-                if (fileReader != null) fileReader.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        }
 
         }
 
 
     }
-}
+
